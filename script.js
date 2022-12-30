@@ -48,8 +48,23 @@ function minimumMoves([strRow, strCol], [dstRow, dstCol]){
         for(let neighbour of getPossibleMoves(row, col)){
             const [r, c] = neighbour;
             const neighbourNode = new Node(r, c, distanceFromStartingPoint + 1, node);
-            if(visited.has(neighbour.getPositionString())) continue;
+            if(!(visited.has(neighbourNode.getPositionString()))) visited.add(neighbourNode.getPositionString());
             queu.push(neighbourNode);
         }
     }
 }
+
+
+
+function arrayOfTotalMinimumMoves(node){
+    let totalMinimumMoves = [];
+    while(node !== null){
+        totalMinimumMoves.push([node.row, node.col]);
+        node = node.antecessor;
+    }
+
+    return totalMinimumMoves;
+}
+
+let node = minimumMoves([1, 1], [5, 5])
+console.log(arrayOfTotalMinimumMoves(node))
