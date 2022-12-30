@@ -54,8 +54,6 @@ function minimumMoves([strRow, strCol], [dstRow, dstCol]){
     }
 }
 
-
-
 function arrayOfTotalMinimumMoves(node){
     let totalMinimumMoves = [];
     while(node !== null){
@@ -68,3 +66,19 @@ function arrayOfTotalMinimumMoves(node){
 
 let node = minimumMoves([1, 1], [5, 5])
 console.log(arrayOfTotalMinimumMoves(node))
+
+
+function createCells(){
+    const chessBoard = document.querySelector("div.chess");
+    for(let row = 1; row <= 8; row++ ){
+        const rowCell = chessBoard.appendChild(document.createElement("div"));
+        for(let col = 1; col <= 8; col++){
+            const colCell = document.createElement('div');
+            rowCell.appendChild(colCell)
+            
+        }
+    }
+
+}
+
+createCells();
