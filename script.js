@@ -81,13 +81,13 @@ function createCells() {
     for (let col = 1; col <= 8; col++) {
       const colCell = document.createElement("div");
       colCell.classList.add("col", col);
-        if(redTurn){
-            if(col % 2 !== 0) colCell.classList.add("dark");
-        }
+      if (redTurn) {
+        if (col % 2 !== 0) colCell.classList.add("dark");
+      }
 
-        if(!redTurn){
-            if(col % 2 === 0) colCell.classList.add("dark");
-        }
+      if (!redTurn) {
+        if (col % 2 === 0) colCell.classList.add("dark");
+      }
 
       rowCell.appendChild(colCell);
     }
@@ -97,34 +97,38 @@ function createCells() {
 
 createCells();
 
-const columnCell = document.querySelectorAll("div.col");
+function cellClick() {
+  const columnCell = document.querySelectorAll("div.col");
+  columnCell.forEach((cell) => {
+    cell.removeEventListener("click", cellCoor);
+    cell.addEventListener("click", cellCoor, { once: true });
+  });
+}
+
+cellClick()
+
 let firstCoord;
 let secondCoord;
 let firstB = true;
-columnCell.forEach((cell) => {
-  cell.addEventListener(
-    "click",
-    () => {
-      const colValue = cell.classList[1];
-      const rowValue = cell.parentElement.classList[1];
-      const coordinates = [parseInt(rowValue), parseInt(colValue)];
-      if (firstB) {
-        firstCoord = coordinates;
-        firstB = false;
-        console.log(firstCoord)
-      } else {
-        secondCoord = coordinates;
-        console.log(secondCoord)
-      }
-    },
-    { once: true }
-  );
-});
 
-document
-  .querySelector("button.travelBtn")
-  .addEventListener("click", () => {
-    let node = minimumMoves(firstCoord, secondCoord)
-    console.log(arrayOfTotalMinimumMoves(node))
-    firstB = true;
-    });
+function cellCoor(e) {
+  let cell = e.target;
+  const colValue = cell.classList[1];
+  const rowValue = cell.parentElement.classList[1];
+  const coordinates = [parseInt(rowValue), parseInt(colValue)];
+  if (firstB) {
+    firstCoord = coordinates;
+    firstB = false;
+    console.log(firstCoord);
+  } else {
+    secondCoord = coordinates;
+    console.log(secondCoord);
+  }
+}
+
+document.querySelector("button.travelBtn").addEventListener("click", () => {
+  let node = minimumMoves(firstCoord, secondCoord);
+  console.log(arrayOfTotalMinimumMoves(node));
+  firstB = true;
+  cellClick()
+});
