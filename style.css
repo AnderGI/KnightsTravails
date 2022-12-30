@@ -2,19 +2,22 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    --background: #FAEBD7;
+    --lightCellColor: #FAEBD7;
+    --darkCellColor: #800000;
 }
 body{
     width: 100vw;
     height: 100vh;
     display: grid;
-    grid-template-columns: 25vw 75vw;
+    grid-template-rows: 90vh 10vh;
+    background-color: var(--background);
 }
 section.btnSection{
     display: flex;
     flex-flow: column wrap;
     justify-content: center;
     align-items: center;
-    gap: 2em;
 }
 section.chessSection{
     display: flex;
@@ -23,16 +26,19 @@ section.chessSection{
     align-items: center;
 }
 div.chess{
-    width: 90%;
-    height: 50%;
+    width: 80%;
+    height: 80%;
     display: grid;
     grid-auto-flow: row;
-    border: 1px solid black;
+    border: 4px solid black;
 }
 div.chess>div.row{
     display:grid;
     grid-template-columns: repeat(8, 1fr);
 }
 div.chess>div.row>div.col{
-    border: 1px solid black;
+    background-color: var(--lightCellColor);
+}
+div.chess>div.row>div.col.dark{
+    background-color: var(--darkCellColor);
 }

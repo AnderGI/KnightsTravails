@@ -74,14 +74,24 @@ function arrayOfTotalMinimumMoves(node) {
 
 function createCells() {
   const chessBoard = document.querySelector("div.chess");
+  let redTurn = true;
   for (let row = 1; row <= 8; row++) {
     const rowCell = chessBoard.appendChild(document.createElement("div"));
     rowCell.classList.add("row", row);
     for (let col = 1; col <= 8; col++) {
       const colCell = document.createElement("div");
       colCell.classList.add("col", col);
+        if(redTurn){
+            if(col % 2 !== 0) colCell.classList.add("dark");
+        }
+
+        if(!redTurn){
+            if(col % 2 === 0) colCell.classList.add("dark");
+        }
+
       rowCell.appendChild(colCell);
     }
+    redTurn = !redTurn;
   }
 }
 
@@ -116,4 +126,5 @@ document
   .addEventListener("click", () => {
     let node = minimumMoves(firstCoord, secondCoord)
     console.log(arrayOfTotalMinimumMoves(node))
-  });
+    firstB = true;
+    });
