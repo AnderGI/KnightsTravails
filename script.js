@@ -22,10 +22,11 @@ function getPossibleMoves(row, col){
     ]
     let moves = [];
 
+    possibleMovements.forEach(movement => {
+        if(movement[0] + row >= 1 && movement[0] + row <= 8 && 
+            movement[1] + col >= 1 && movement[1] + col <= 8) moves.push([movement[0] + row, movement[1] + col]);
 
-
-
-
+    })
 
     return moves;
 }
