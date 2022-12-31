@@ -100,6 +100,7 @@ createCells();
 function cellClick() {
   const columnCell = document.querySelectorAll("div.col");
   columnCell.forEach((cell) => {
+    cell.textContent = "";
     cell.removeEventListener("click", cellCoor);
     cell.addEventListener("click", cellCoor, { once: true });
   });
@@ -118,13 +119,24 @@ function cellCoor(e) {
   const coordinates = [parseInt(rowValue), parseInt(colValue)];
   if (firstB) {
     firstCoord = coordinates;
+    cell.textContent = "str";
     firstB = false;
     console.log(firstCoord);
   } else {
     secondCoord = coordinates;
+    cell.textContent = "dst";
     console.log(secondCoord);
   }
 }
+
+
+const displayCoordinates = (array) => {
+  const chess = document.querySelectorAll("div.row")
+console.log(chess)
+}
+
+
+
 
 document.querySelector("button.travelBtn").addEventListener("click", () => {
   let node = minimumMoves(firstCoord, secondCoord);
