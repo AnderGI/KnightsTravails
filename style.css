@@ -3,8 +3,8 @@
     padding: 0;
     box-sizing: border-box;
     --background: #FAEBD7;
-    --lightCellColor: #FAEBD7;
-    --darkCellColor: #800000;
+    --lightCellColor: #faebd7;
+    --darkCellColor: rgb(128, 0, 0);
 }
 body{
     width: 100vw;
@@ -13,12 +13,31 @@ body{
     grid-template-rows: 90vh 10vh;
     background-color: var(--background);
 }
+/*BTN*/
 section.btnSection{
     display: flex;
-    flex-flow: column wrap;
+    flex-flow: row wrap;
     justify-content: center;
     align-items: center;
 }
+section.btnSection>button.travelBtn{
+    background-color: rgba(0, 0, 0, 0);
+    color: var(--lightCellColor);
+    font-family: monospace;
+    font-size: 2em;
+    font-weight: 700;
+    padding: 0.125em 5em;
+    border: none;
+    background-color: rgba(128, 0, 0, 0.5);
+    transition: background-color ease-in-out 500ms ;
+}
+section.btnSection>button.travelBtn:hover{
+    background-color: rgba(128, 0, 0, 1);
+}
+
+
+
+/*CHESS BOARD*/
 section.chessSection{
     display: flex;
     flex-flow: column wrap;
