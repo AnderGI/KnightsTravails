@@ -106,7 +106,7 @@ function cellClick() {
   });
 }
 
-cellClick()
+cellClick();
 
 let firstCoord;
 let secondCoord;
@@ -129,18 +129,34 @@ function cellCoor(e) {
   }
 }
 
+const displayCoordinates = (arrayOfArrays) => {
+  //get the selected cells
+  //fist get the row from a rows nodeList; access it with an index
+  //second get all the cells from those rows and access the 
+  //correspondig cell with an index
+  //use arrayOfSelectedCells as a stack
+  let arrayOfSelectedCells = [];
+  const rows = document.querySelectorAll("div.row");
+  arrayOfArrays.forEach(array => {
+    const [row, col] = array;
+    arrayOfSelectedCells.push(rows[row - 1].querySelectorAll("div.col")[col - 1])
+  })
 
-const displayCoordinates = (array) => {
-  const chess = document.querySelectorAll("div.row")
-console.log(chess)
-}
+  let counter = 1;
+  while(arrayOfSelectedCells.length > 0){
+    let currentCell = arrayOfSelectedCells.pop()
+    currentCell.textContent = counter
+    counter++;
+  }
 
 
 
+};
 
 document.querySelector("button.travelBtn").addEventListener("click", () => {
   let node = minimumMoves(firstCoord, secondCoord);
-  console.log(arrayOfTotalMinimumMoves(node));
+  console.log(arrayOfTotalMinimumMoves(node))
+  cellClick();
+  displayCoordinates(arrayOfTotalMinimumMoves(node));
   firstB = true;
-  cellClick()
 });
