@@ -132,30 +132,36 @@ function cellCoor(e) {
 const displayCoordinates = (arrayOfArrays) => {
   //get the selected cells
   //fist get the row from a rows nodeList; access it with an index
-  //second get all the cells from those rows and access the 
+  //second get all the cells from those rows and access the
   //correspondig cell with an index
   //use arrayOfSelectedCells as a stack
   let arrayOfSelectedCells = [];
+  let firstElement = arrayOfArrays[0];
+  let lastElement = arrayOfArrays[arrayOfArrays.length - 1];
   const rows = document.querySelectorAll("div.row");
-  arrayOfArrays.forEach(array => {
+  arrayOfArrays.forEach((array) => {
     const [row, col] = array;
-    arrayOfSelectedCells.push(rows[row - 1].querySelectorAll("div.col")[col - 1])
-  })
+    arrayOfSelectedCells.push(
+      rows[row - 1].querySelectorAll("div.col")[col - 1]
+    );
+  });
 
-  let counter = 1;
-  while(arrayOfSelectedCells.length > 0){
-    let currentCell = arrayOfSelectedCells.pop()
-    currentCell.textContent = counter
+  let counter = 0;
+  while (arrayOfSelectedCells.length > 0) {
+    let currentCell = arrayOfSelectedCells.pop();
     counter++;
+    currentCell.textContent = counter;
   }
-
-
-
+  alert(
+    `A total ${
+      (counter - 1)
+    } of moves are needed to go from ${firstElement} to ${lastElement}`
+  );
 };
 
 document.querySelector("button.travelBtn").addEventListener("click", () => {
   let node = minimumMoves(firstCoord, secondCoord);
-  console.log(arrayOfTotalMinimumMoves(node))
+  console.log(arrayOfTotalMinimumMoves(node));
   cellClick();
   displayCoordinates(arrayOfTotalMinimumMoves(node));
   firstB = true;
